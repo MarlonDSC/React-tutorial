@@ -9,6 +9,8 @@ const Home = () => {
         { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
     ]);
 
+    const [name, setName] = useState('mario');
+
     const handleDelete = (id) => {
         //When clicking the button shows all the blogs unless the one that has been click because it has been filtered
         const newBlogs = blogs.filter(blog => blog.id !== id);
@@ -17,12 +19,14 @@ const Home = () => {
 
     useEffect(() => {
         console.log('use effect ran');
-        console.log(blogs);
-    });
+        console.log(name);
+    }, [name]);
 
     return (
         <div className="home">
             <BlogList blogs={ blogs } title = "All blogs" handleDelete = { handleDelete }/>
+            <button onClick={ () => setName('luigi')}>Change name</button>
+            <p>{ name }</p>
         </div>
     );
 }
